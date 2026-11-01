@@ -1,0 +1,13 @@
+.container.navbar
+  a.brand(href="/", aria-label="NewsGame - Trang chủ")
+    span.brand-icon NG
+    span.brand-name News#[span Game]
+  button.mobile-menu(type="button", aria-label="Mở menu", aria-controls="main-nav", aria-expanded="false", onclick="const menu = document.querySelector('.nav-links'); const isOpen = menu.classList.toggle('is-open'); this.setAttribute('aria-expanded', String(isOpen))") ☰
+  nav#main-nav.nav-links(aria-label="Điều hướng chính")
+    a(href="/", class=currentPath === "/" ? "active" : null, aria-current=currentPath === "/" ? "page" : null) Trang chủ
+    a(href="/posts", class=currentPath.startsWith("/posts") ? "active" : null, aria-current=currentPath.startsWith("/posts") ? "page" : null) Tin tức
+    a(href="/games", class=currentPath.startsWith("/games") ? "active" : null, aria-current=currentPath.startsWith("/games") ? "page" : null) Khám phá game
+    a(href="/categories", class=currentPath.startsWith("/categories") ? "active" : null, aria-current=currentPath.startsWith("/categories") ? "page" : null) Thể loại
+  .nav-actions
+    a.search-button(href="/posts") Tìm kiếm ⌕
+    a.login-link(href="/login", class=currentPath === "/login" ? "active" : null, aria-current=currentPath === "/login" ? "page" : null) Đăng nhập

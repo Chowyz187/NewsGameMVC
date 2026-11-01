@@ -1,0 +1,133 @@
+extends ../layouts/main
+
+block content
+  main.homepage
+    section.hero.container
+      .hero-copy
+        span.eyebrow TIN GAME • ĐÁNH GIÁ • CỘNG ĐỒNG
+        h1 Thế giới game, #[br] #[span cập nhật mỗi ngày.]
+        p.hero-description Tin nóng, đánh giá chuyên sâu, hướng dẫn và những tựa game đáng chú ý — tất cả trong một nơi.
+        .hero-actions
+          a.btn.btn-primary(href="/posts") Khám phá tin tức
+          a.btn.btn-outline(href="/games") Khám phá game
+        .hero-stats
+          .stat
+            strong 01
+            span Tin tức mới
+          .stat
+            strong 02
+            span Đánh giá game
+          .stat
+            strong 03
+            span Cộng đồng
+      .hero-visual
+        .hero-glow
+        .hero-art
+          span.hero-tag FEATURED
+          .hero-art-content
+            span.hero-kicker TÂM ĐIỂM TUẦN NÀY
+            h2 Những thế giới #[br] đáng để khám phá
+            p Khám phá các tựa game đang được cộng đồng quan tâm.
+            a.hero-link(href="/games") Xem danh sách →
+          .hero-orbit.orbit-one
+          .hero-orbit.orbit-two
+          span.hero-symbol ✦
+
+    section.container.section-block
+      .section-heading
+        div
+          span.section-label CẬP NHẬT
+          h2 Tin tức nổi bật
+        a.text-link(href="/posts") Xem tất cả ↗
+      .news-grid
+        article.news-card.news-card-featured
+          a.news-image.news-image-large(href="/posts")
+            span.image-badge MỚI NHẤT
+            span.image-placeholder ◈
+          .news-card-body
+            .meta
+              span.category-chip Tin tức
+              span.meta-date Hôm nay
+            h3: a(href="/posts") Những chuyển động đáng chú ý của làng game
+            p Tổng hợp tin tức, cập nhật và thông tin đáng quan tâm dành cho game thủ.
+            a.card-link(href="/posts") Đọc bài viết →
+        article.news-card
+          a.news-image.news-image-purple(href="/posts"): span.image-placeholder ✧
+          .news-card-body
+            .meta
+              span.category-chip Đánh giá
+              span.meta-date 5 phút đọc
+            h3: a(href="/posts") Đánh giá game: trải nghiệm có thực sự xứng đáng?
+            p Góc nhìn về gameplay, đồ họa và giá trị mà trò chơi mang lại.
+            a.card-link(href="/posts") Đọc bài viết →
+        article.news-card
+          a.news-image.news-image-blue(href="/posts"): span.image-placeholder ⌘
+          .news-card-body
+            .meta
+              span.category-chip Hướng dẫn
+              span.meta-date Dành cho người mới
+            h3: a(href="/posts") Bắt đầu hành trình mới với những mẹo hữu ích
+            p Một vài kinh nghiệm giúp bạn làm quen và tận hưởng game tốt hơn.
+            a.card-link(href="/posts") Đọc bài viết →
+
+    section.container.section-block.games-section
+      .section-heading
+        div
+          span.section-label KHÁM PHÁ
+          h2 Game được quan tâm
+        a.text-link(href="/games") Xem thư viện ↗
+      .game-grid
+        article.game-card
+          a.game-cover.cover-orange(href="/games")
+            span.cover-mark ◈
+            span.cover-platform PC
+          .game-info
+            h3: a(href="/games") Hành động & phiêu lưu
+            p Khám phá • Cốt truyện
+            .game-footer
+              span.score-label ĐIỂM ĐÁNH GIÁ
+              span.score-value —
+        article.game-card
+          a.game-cover.cover-violet(href="/games")
+            span.cover-mark ✦
+            span.cover-platform PC / CONSOLE
+          .game-info
+            h3: a(href="/games") Nhập vai & thế giới mở
+            p RPG • Khám phá
+            .game-footer
+              span.score-label ĐIỂM ĐÁNH GIÁ
+              span.score-value —
+        article.game-card
+          a.game-cover.cover-green(href="/games")
+            span.cover-mark ⌘
+            span.cover-platform PC
+          .game-info
+            h3: a(href="/games") Chiến thuật & sinh tồn
+            p Chiến thuật • Sinh tồn
+            .game-footer
+              span.score-label ĐIỂM ĐÁNH GIÁ
+              span.score-value —
+        article.game-card
+          a.game-cover.cover-blue(href="/games")
+            span.cover-mark ◎
+            span.cover-platform ĐA NỀN TẢNG
+          .game-info
+            h3: a(href="/games") Indie đáng thử
+            p Sáng tạo • Độc lập
+            .game-footer
+              span.score-label ĐIỂM ĐÁNH GIÁ
+              span.score-value —
+
+    section.container.community-banner
+      .community-copy
+        span.section-label GÓC GAME THỦ
+        h2 Không chỉ chơi game. #[br] #[span Cùng chia sẻ đam mê.]
+        p Tham gia thảo luận, chia sẻ góc nhìn và khám phá những tựa game mới cùng cộng đồng.
+        a.btn.btn-primary(href="/register") Tham gia cộng đồng
+      .community-decoration
+        span.decoration-ring.ring-a
+        span.decoration-ring.ring-b
+        span.decoration-star ✦
+
+block pageScripts
+  script(src="/js/game-images.js", defer)

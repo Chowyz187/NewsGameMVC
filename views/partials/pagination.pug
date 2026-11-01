@@ -1,0 +1,19 @@
+- const pages = Math.max(1, Number(typeof totalPages !== 'undefined' ? totalPages : 1) || 1)
+- const page = Math.min(pages, Math.max(1, Number(typeof currentPage !== 'undefined' ? currentPage : 1) || 1))
+- const paginationUrl = typeof baseUrl !== 'undefined' ? baseUrl : '/posts'
+
+if pages > 1
+  nav.pagination(aria-label="Phân trang")
+    if page > 1
+      a.pagination-control(href=`${paginationUrl}?page=${page - 1}`, aria-label="Trang trước") ← Trước
+    else
+      span.pagination-control.is-disabled(aria-disabled="true") ← Trước
+    .pagination-status
+      span Trang
+      strong= page
+      span /
+      span= pages
+    if page < pages
+      a.pagination-control(href=`${paginationUrl}?page=${page + 1}`, aria-label="Trang tiếp theo") Tiếp →
+    else
+      span.pagination-control.is-disabled(aria-disabled="true") Tiếp →

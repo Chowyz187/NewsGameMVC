@@ -1,0 +1,47 @@
+extends ../../layouts/main
+
+block title
+  | Tạo tài khoản | NewsGameMVC
+
+block pageStyles
+  link(rel="stylesheet", href="/css/auth.css")
+
+block content
+  main.auth-page
+    .auth-container
+      section.auth-intro
+        span.auth-eyebrow NEWSGAME COMMUNITY
+        h1 Bắt đầu hành trình #[br] #[span game thủ.]
+        p.auth-intro-copy Tạo tài khoản để khám phá tin tức, chia sẻ đánh giá và kết nối với những người cùng đam mê.
+        .auth-highlights
+          .auth-highlight
+            span.auth-highlight-icon ✦
+            span Theo dõi tin tức và đánh giá mới
+          .auth-highlight
+            span.auth-highlight-icon ◈
+            span Cùng cộng đồng khám phá thế giới game
+        .auth-orbit.auth-orbit-one
+        .auth-orbit.auth-orbit-two
+        span.auth-star.auth-star-one ✦
+        span.auth-star.auth-star-two ✧
+      section.auth-card(aria-labelledby="register-title")
+        .auth-card-heading
+          span.section-label THAM GIA CỘNG ĐỒNG
+          h2#register-title Tạo tài khoản
+          p Chỉ mất một phút để bắt đầu.
+        form.auth-form(action="/register", method="post")
+          .field-group
+            label(for="register-name") Tên hiển thị
+            input#register-name(type="text", name="name", placeholder="Tên của bạn", autocomplete="name", required)
+          .field-group
+            label(for="register-email") Email
+            input#register-email(type="email", name="email", placeholder="ban@example.com", autocomplete="email", required)
+          .field-group
+            label(for="register-password") Mật khẩu
+            input#register-password(type="password", name="password", placeholder="Ít nhất 8 ký tự", autocomplete="new-password", minlength="8", required)
+          label.check-label.terms-label(for="accept-terms")
+            input#accept-terms(type="checkbox", name="acceptTerms", required)
+            span Tôi đồng ý tham gia và tuân thủ các quy tắc cộng đồng.
+          button.btn.btn-primary.auth-submit(type="submit") Tạo tài khoản
+        p.auth-switch Đã có tài khoản? #[a(href="/login") Đăng nhập]
+        a.auth-back(href="/") ← Trở về trang chủ

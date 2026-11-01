@@ -1,0 +1,45 @@
+extends ../../layouts/main
+
+block title
+  | Đăng nhập | NewsGameMVC
+
+block pageStyles
+  link(rel="stylesheet", href="/css/auth.css")
+
+block content
+  main.auth-page
+    .auth-container
+      section.auth-intro
+        span.auth-eyebrow NEWSGAME COMMUNITY
+        h1 Chào mừng #[br] #[span trở lại.]
+        p.auth-intro-copy Tiếp tục theo dõi tin game mới, lưu lại những bài viết yêu thích và chia sẻ góc nhìn cùng cộng đồng.
+        .auth-highlights
+          .auth-highlight
+            span.auth-highlight-icon ✦
+            span Cập nhật những câu chuyện game mới nhất
+          .auth-highlight
+            span.auth-highlight-icon ◈
+            span Khám phá và lưu lại tựa game bạn yêu thích
+        .auth-orbit.auth-orbit-one
+        .auth-orbit.auth-orbit-two
+        span.auth-star.auth-star-one ✦
+        span.auth-star.auth-star-two ✧
+      section.auth-card(aria-labelledby="login-title")
+        .auth-card-heading
+          span.section-label TÀI KHOẢN NEWSGAME
+          h2#login-title Đăng nhập
+          p Chào bạn! Nhập thông tin để tiếp tục.
+        form.auth-form(action="/login", method="post")
+          .field-group
+            label(for="login-email") Email
+            input#login-email(type="email", name="email", placeholder="ban@example.com", autocomplete="email", required)
+          .field-group
+            label(for="login-password") Mật khẩu
+            input#login-password(type="password", name="password", placeholder="Nhập mật khẩu", autocomplete="current-password", required)
+          .auth-options
+            label.check-label(for="remember-me")
+              input#remember-me(type="checkbox", name="remember")
+              span Ghi nhớ đăng nhập
+          button.btn.btn-primary.auth-submit(type="submit") Đăng nhập
+        p.auth-switch Chưa có tài khoản? #[a(href="/register") Tạo tài khoản]
+        a.auth-back(href="/") ← Trở về trang chủ

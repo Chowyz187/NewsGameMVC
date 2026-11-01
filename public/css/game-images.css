@@ -1,0 +1,12 @@
+.hero-art{isolation:isolate}
+.hero-api-image,.api-cover-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s ease}
+.hero-api-image{z-index:0;filter:brightness(.58)}
+.hero-art.api-image-loaded .hero-api-image,.news-image.api-image-loaded .api-cover-image,.game-cover.api-image-loaded .api-cover-image{opacity:1}
+.hero-art.api-image-loaded .hero-art-content,.hero-art.api-image-loaded .hero-tag{z-index:2}
+.news-image .api-cover-image{z-index:0}
+.news-image.api-image-loaded:before{z-index:1}
+.news-image.api-image-loaded .image-placeholder,.game-cover.api-image-loaded .cover-mark{display:none}
+.game-cover .api-cover-image{z-index:0}
+.game-cover.api-image-loaded:before,.game-cover.api-image-loaded:after{z-index:1}
+.game-cover.api-image-loaded .cover-platform{z-index:2}
+@media(prefers-reduced-motion:reduce){.hero-api-image,.api-cover-image{transition:none}}
