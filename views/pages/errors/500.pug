@@ -1,0 +1,65 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(name="theme-color", content="#0b1020")
+    meta(name="description", content="Đã xảy ra lỗi máy chủ. Vui lòng thử lại sau.")
+    title 500 — Lỗi máy chủ | NewsGame
+    link(rel="stylesheet", href="/css/error-pages.css")
+  body.error-body.error-500
+    .ambient.ambient-one(aria-hidden="true")
+    .ambient.ambient-two(aria-hidden="true")
+    .page-shell
+      header.error-header
+        a.brand(href="/", aria-label="NewsGame - Trang chủ")
+          span.brand-mark NG
+          span.brand-name NEWS#[span GAME]
+        span.header-label SERVER STATUS
+      main.error-layout
+        section.error-copy
+          .status-pill
+            span.status-dot
+            | SYSTEM INTERRUPTED
+          p.error-kicker LỖI HỆ THỐNG / 03
+          h1 Máy chủ đang #[span gặp sự cố.]
+          p.error-description
+            | Đã xảy ra lỗi trong quá trình xử lý yêu cầu của bạn. Đội ngũ NewsGame cần kiểm tra hệ thống. Bạn hãy thử tải lại trang sau ít phút nhé.
+          .error-actions
+            a.btn.btn-primary(href="/")
+              span.btn-icon ⌂
+              | Về trang chủ
+            button.btn.btn-ghost(type="button", onclick="window.location.reload()") Thử tải lại
+          p.error-help Mã lỗi: #[strong 500] #[span •] Internal Server Error
+        section.error-visual(aria-label="Minh họa máy chủ đang gặp sự cố")
+          .visual-grid(aria-hidden="true")
+          .visual-corner.corner-tl
+          .visual-corner.corner-br
+          .server-panel
+            .panel-topline
+              span.panel-label SERVER ROOM // 01
+              span.server-alert ATTENTION
+            .server-rack(aria-hidden="true")
+              .server-unit
+                span.server-light
+                span.server-slot
+                span.server-slot.short
+                span.server-state ERROR
+              .server-unit
+                span.server-light
+                span.server-slot
+                span.server-slot.short
+                span.server-state OFFLINE
+              .server-unit
+                span.server-light
+                span.server-slot
+                span.server-slot.short
+                span.server-state ERROR
+            .server-sparks(aria-hidden="true")
+            .server-bottom
+              span CPU: --%
+              span MEMORY: --%
+              span CONNECTION: LOST
+      footer.error-footer
+        span © 2026 NewsGame
+        span.error-footer-note KEEP PLAYING. KEEP EXPLORING.

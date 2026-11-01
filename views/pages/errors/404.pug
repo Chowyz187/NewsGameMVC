@@ -1,0 +1,56 @@
+doctype html
+html(lang="vi")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(name="theme-color", content="#0b1020")
+    meta(name="description", content="Không tìm thấy trang bạn đang tìm kiếm.")
+    title 404 — Không tìm thấy trang | NewsGame
+    link(rel="stylesheet", href="/css/error-pages.css")
+  body.error-body.error-404
+    .ambient.ambient-one(aria-hidden="true")
+    .ambient.ambient-two(aria-hidden="true")
+    .page-shell
+      header.error-header
+        a.brand(href="/", aria-label="NewsGame - Trang chủ")
+          span.brand-mark NG
+          span.brand-name NEWS#[span GAME]
+        span.header-label LOST IN THE GAME?
+      main.error-layout
+        section.error-copy
+          .status-pill
+            span.status-dot
+            | PAGE NOT FOUND
+          p.error-kicker LỖI ĐƯỜNG DẪN / 02
+          h1 Có vẻ bạn đã #[span đi lạc.]
+          p.error-description
+            | Trang bạn đang tìm không tồn tại, đã được di chuyển hoặc đường dẫn không chính xác. Đừng lo, vẫn còn rất nhiều tin game đang chờ bạn khám phá.
+          .error-actions
+            a.btn.btn-primary(href="/")
+              span.btn-icon ⌂
+              | Về trang chủ
+            button.btn.btn-ghost(type="button", onclick="history.back()") Quay lại
+          p.error-help Mã lỗi: #[strong 404] #[span •] Not Found
+        section.error-visual(aria-label="Minh họa bản đồ bị thất lạc")
+          .visual-grid(aria-hidden="true")
+          .visual-corner.corner-tl
+          .visual-corner.corner-br
+          .map-panel
+            .panel-topline
+              span.panel-label WORLD MAP // 404
+              span.map-coordinates 00° 00' N
+            .map-grid(aria-hidden="true")
+              .map-route.route-one
+              .map-route.route-two
+              .map-node.node-one
+              .map-node.node-two
+              .map-node.node-three
+              .map-pin
+                span.pin-core
+            .map-bottom
+              span.signal-dot
+              span COORDINATES NOT FOUND
+              span.map-warning LOST SIGNAL
+      footer.error-footer
+        span © 2026 NewsGame
+        span.error-footer-note KEEP PLAYING. KEEP EXPLORING.
