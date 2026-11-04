@@ -1,0 +1,93 @@
+extends ../../layouts/main
+
+block title
+  | Chỉnh sửa hồ sơ | NewsGameMVC
+
+block pageStyles
+  link(rel="stylesheet", href="/css/users.css")
+
+block content
+  - const user = typeof profile !== 'undefined' ? profile : {}
+
+  main.user-page.user-edit-page
+    .container
+      nav.user-breadcrumb(aria-label="Đường dẫn")
+        a(href="/") Trang chủ
+        span(aria-hidden="true") /
+        a(href="/users/profile") Hồ sơ thành viên
+        span(aria-hidden="true") /
+        span Chỉnh sửa
+
+      header.edit-page-heading
+        div
+          span.section-label TÀI KHOẢN
+          h1 Chỉnh sửa hồ sơ
+          p Cập nhật thông tin để cộng đồng hiểu thêm về bạn.
+        a.text-link(href="/users/profile") ← Quay lại hồ sơ
+
+      .edit-profile-layout
+        form.profile-edit-card(aria-label="Thông tin hồ sơ")
+          section.edit-section(aria-labelledby="photo-title")
+            .edit-section-heading
+              div
+                span.section-label HÌNH ẢNH
+                h2#photo-title Ảnh đại diện
+            .avatar-editor
+              .profile-avatar.profile-avatar-editor
+                if user.avatar
+                  img(src=user.avatar, alt=`Ảnh đại diện của ${user.displayName || 'thành viên'}`)
+                else
+                  span= user.initials || 'NG'
+              div.avatar-editor-copy
+                strong Ảnh đại diện của bạn
+                p JPG hoặc PNG. Tính năng tải ảnh sẽ được kết nối sau.
+                button.btn.btn-outline(type="button", disabled) Tải ảnh lên
+
+          section.edit-section(aria-labelledby="details-title")
+            .edit-section-heading
+              div
+                span.section-label THÔNG TIN CÁ NHÂN
+                h2#details-title Chi tiết hồ sơ
+            .profile-form-grid
+              .profile-field
+                label(for="display-name") Tên hiển thị
+                input#display-name(type="text", name="displayName", value=user.displayName || '', placeholder="Tên bạn muốn mọi người thấy", maxlength="60")
+              .profile-field
+                label(for="username") Tên người dùng
+                .input-with-prefix
+                  span @
+                  input#username(type="text", name="username", value=user.username || '', placeholder="ten-nguoi-dung", maxlength="30")
+              .profile-field.profile-field-wide
+                label(for="bio") Giới thiệu ngắn
+                textarea#bio(name="bio", rows="4", maxlength="240", placeholder="Chia sẻ một chút về bạn...")= user.bio || ''
+                span.field-hint Tối đa 240 ký tự.
+              .profile-field
+                label(for="location") Thành phố
+                input#location(type="text", name="location", value=user.location || '', placeholder="Ví dụ: TP. Hồ Chí Minh", maxlength="80")
+              .profile-field
+                label(for="website") Website
+                input#website(type="url", name="website", value=user.website || '', placeholder="https://example.com", maxlength="200")
+
+          section.edit-section(aria-labelledby="interests-title")
+            .edit-section-heading
+              div
+                span.section-label SỞ THÍCH
+                h2#interests-title Thể loại yêu thích
+            p.field-hint Chọn những thể loại bạn thường chơi hoặc muốn theo dõi.
+            .genre-options
+              each genre in ['Hành động', 'Phiêu lưu', 'Nhập vai', 'Chiến thuật', 'Mô phỏng', 'Indie']
+                - const selectedGenres = user.favoriteGenres || []
+                label.genre-option(class=selectedGenres.includes(genre) ? 'is-selected' : null)
+                  input(type="checkbox", name="favoriteGenres", value=genre, checked=selectedGenres.includes(genre))
+                  span= genre
+
+          .edit-form-actions
+            a.btn.btn-outline(href="/users/profile") Hủy
+            button.btn.btn-primary(type="button", disabled) Lưu thay đổi
+            p.save-note Chưa kết nối lưu dữ liệu.
+
+        aside.edit-help-card
+          span.edit-help-icon(aria-hidden="true") ✦
+          h2 Hồ sơ tốt bắt đầu từ bạn
+          p Chia sẻ sở thích để mọi người dễ tìm thấy bạn trong cộng đồng NewsGame.
+          a.text-link(href="/users/profile") Xem hồ sơ của bạn →

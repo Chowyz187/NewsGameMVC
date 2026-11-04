@@ -1,0 +1,93 @@
+extends ../../layouts/main
+
+block title
+  | #{isEdit ? 'Chỉnh sửa game' : 'Thêm game'} | NewsGameMVC
+
+block pageStyles
+  link(rel="stylesheet", href="/css/games.css")
+
+block content
+  - const formGame = game || {}
+
+  main.games-page.game-form-page
+    .container
+      nav.games-breadcrumb(aria-label="Đường dẫn")
+        a(href="/") Trang chủ
+        span(aria-hidden="true") /
+        a(href="/games") Khám phá game
+        span(aria-hidden="true") /
+        span= isEdit ? 'Chỉnh sửa game' : 'Thêm game'
+
+      header.game-form-heading
+        div
+          span.section-label QUẢN LÝ THƯ VIỆN
+          h1= isEdit ? 'Chỉnh sửa thông tin game' : 'Thêm game mới'
+          p Đây là bản xem trước giao diện. Biểu mẫu chưa kết nối lưu dữ liệu.
+        a.text-link(href="/games") ← Quay lại thư viện
+
+      section.game-form-card(aria-label="Thông tin game")
+        section.game-form-section(aria-labelledby="basic-info-title")
+          .form-section-heading
+            span.form-section-number 01
+            div
+              h2#basic-info-title Thông tin cơ bản
+              p Giới thiệu nhanh về trò chơi trong thư viện.
+          .game-form-grid
+            .game-field.game-field-wide
+              label(for="game-title") Tên game
+              input#game-title(type="text", name="title", value=formGame.title || '', placeholder="Ví dụ: Journey Beyond", required)
+            .game-field
+              label(for="game-genre") Thể loại
+              select#game-genre(name="genre")
+                option(value="") Chọn thể loại
+                each genre in ['Hành động', 'Phiêu lưu', 'Nhập vai', 'Chiến thuật', 'Mô phỏng', 'Đua xe', 'Indie']
+                  option(value=genre, selected=formGame.genre === genre)= genre
+            .game-field
+              label(for="game-status") Trạng thái
+              select#game-status(name="status")
+                each status in ['Đang phát hành', 'Sắp ra mắt', 'Tạm ngừng']
+                  option(value=status, selected=formGame.status === status)= status
+            .game-field.game-field-wide
+              label(for="game-summary") Mô tả ngắn
+              textarea#game-summary(name="summary", rows="3", maxlength="240", placeholder="Viết phần giới thiệu ngắn...")= formGame.summary || ''
+
+        section.game-form-section(aria-labelledby="release-info-title")
+          .form-section-heading
+            span.form-section-number 02
+            div
+              h2#release-info-title Phát hành & nền tảng
+              p Những thông tin giúp người chơi tìm hiểu trò chơi.
+          .game-form-grid
+            .game-field
+              label(for="game-platform") Nền tảng
+              input#game-platform(type="text", name="platform", value=formGame.platform || '', placeholder="PC, PlayStation...")
+            .game-field
+              label(for="game-release-date") Ngày phát hành
+              input#game-release-date(type="text", name="releaseDate", value=formGame.releaseDate || '', placeholder="dd/mm/yyyy")
+            .game-field
+              label(for="game-developer") Nhà phát triển
+              input#game-developer(type="text", name="developer", value=formGame.developer || '', placeholder="Tên studio")
+            .game-field
+              label(for="game-publisher") Nhà phát hành
+              input#game-publisher(type="text", name="publisher", value=formGame.publisher || '', placeholder="Tên nhà phát hành")
+            .game-field.game-field-wide
+              label(for="game-description") Mô tả chi tiết
+              textarea#game-description(name="description", rows="5", placeholder="Giới thiệu về thế giới, lối chơi và điểm nổi bật...")= formGame.description || ''
+
+        section.game-form-section(aria-labelledby="cover-title")
+          .form-section-heading
+            span.form-section-number 03
+            div
+              h2#cover-title Hình ảnh bìa
+              p Khu vực xem trước; tải ảnh chưa được kết nối.
+          .game-cover-preview(class=formGame.coverClass || 'game-art--ember')
+            span.catalog-art-symbol(aria-hidden="true")= formGame.icon || '✦'
+            span.cover-preview-copy
+              strong= formGame.title || 'Ảnh bìa trò chơi'
+              small Chọn ảnh bìa khi chức năng tải tệp được triển khai.
+            button.btn.btn-outline(type="button", disabled) Chọn ảnh
+
+        .game-form-actions
+          a.btn.btn-outline(href="/games") Hủy
+          button.btn.btn-primary(type="button", disabled)= isEdit ? 'Lưu thay đổi' : 'Thêm game'
+          p.form-demo-note Biểu mẫu demo · Chưa lưu dữ liệu

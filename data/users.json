@@ -1,0 +1,55 @@
+{
+  "profile": {
+    "id": "demo-user-01",
+    "displayName": "Trần Minh Anh",
+    "username": "minhanh",
+    "initials": "MA",
+    "avatar": null,
+    "bio": "Game thủ thích khám phá thế giới mở, đọc lore và viết lại những trải nghiệm đáng nhớ.",
+    "about": "Mình thường chơi RPG và game phiêu lưu. Rất vui được trao đổi về những tựa game có cốt truyện hay!",
+    "location": "TP. Hồ Chí Minh",
+    "joinedAt": "tháng 8, 2024",
+    "website": "",
+    "websiteLabel": "",
+    "favoriteGenres": ["Nhập vai", "Phiêu lưu", "Indie"],
+    "stats": {
+      "posts": 12,
+      "reviews": 8,
+      "followers": 246,
+      "following": 128
+    },
+    "recentActivity": [
+      {
+        "type": "review",
+        "title": "Hành trình giàu cảm xúc trong thế giới mở",
+        "excerpt": "Một trải nghiệm khám phá cuốn hút với nhiều câu chuyện nhỏ đáng nhớ.",
+        "date": "2 ngày trước",
+        "category": "Đánh giá",
+        "rating": "4.5/5",
+        "url": "/posts"
+      },
+      {
+        "type": "post",
+        "title": "5 tựa game indie đáng thử cuối tuần này",
+        "excerpt": "Danh sách những trò chơi nhỏ nhưng có cá tính và lối chơi rất riêng.",
+        "date": "1 tuần trước",
+        "category": "Gợi ý",
+        "url": "/posts"
+      }
+    ],
+    "favoriteGames": [
+      {
+        "title": "Thế giới mở",
+        "genre": "Phiêu lưu • RPG",
+        "icon": "✦",
+        "url": "/games"
+      },
+      {
+        "title": "Cuộc phiêu lưu indie",
+        "genre": "Indie • Khám phá",
+        "icon": "◈",
+        "url": "/games"
+      }
+    ]
+  }
+}

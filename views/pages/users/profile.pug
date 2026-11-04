@@ -1,0 +1,137 @@
+extends ../../layouts/main
+
+block title
+  | Hồ sơ thành viên | NewsGameMVC
+
+block pageStyles
+  link(rel="stylesheet", href="/css/users.css")
+
+block content
+  - const user = typeof profile !== 'undefined' ? profile : {}
+  - const stats = user.stats || {}
+  - const activities = user.recentActivity || []
+  - const favoriteGames = user.favoriteGames || []
+
+  main.user-page
+    .container
+      nav.user-breadcrumb(aria-label="Đường dẫn")
+        a(href="/") Trang chủ
+        span(aria-hidden="true") /
+        span Hồ sơ thành viên
+
+      section.profile-hero(aria-labelledby="profile-name")
+        .profile-cover
+          span.cover-orbit.cover-orbit-one(aria-hidden="true")
+          span.cover-orbit.cover-orbit-two(aria-hidden="true")
+          span.cover-kicker NEWSGAME COMMUNITY
+        .profile-identity
+          .profile-avatar(aria-label=`Ảnh đại diện của ${user.displayName || 'thành viên'}`)
+            if user.avatar
+              img(src=user.avatar, alt=`Ảnh đại diện của ${user.displayName}`)
+            else
+              span= user.initials || 'NG'
+          .profile-heading
+            .profile-name-row
+              div
+                span.profile-status Thành viên
+                h1#profile-name= user.displayName || 'Tên thành viên'
+                p.profile-handle= `@${user.username || 'username'}`
+              a.btn.btn-outline.profile-edit-link(href="/users/edit-profile") Chỉnh sửa hồ sơ
+            if user.bio
+              p.profile-bio= user.bio
+            .profile-meta
+              if user.location
+                span
+                  span.meta-icon(aria-hidden="true") ◉
+                  = user.location
+              if user.joinedAt
+                span
+                  span.meta-icon(aria-hidden="true") ✦
+                  = `Tham gia ${user.joinedAt}`
+              if user.website
+                a(href=user.website, target="_blank", rel="noreferrer")
+                  span.meta-icon(aria-hidden="true") ↗
+                  = user.websiteLabel || user.website
+
+      .profile-stats(aria-label="Thống kê hoạt động")
+        .profile-stat
+          strong= stats.posts || 0
+          span Bài viết
+        .profile-stat
+          strong= stats.reviews || 0
+          span Đánh giá
+        .profile-stat
+          strong= stats.followers || 0
+          span Người theo dõi
+        .profile-stat
+          strong= stats.following || 0
+          span Đang theo dõi
+
+      .profile-content
+        section.profile-panel.activity-panel(aria-labelledby="activity-title")
+          .profile-panel-heading
+            div
+              span.section-label HOẠT ĐỘNG
+              h2#activity-title Bài viết gần đây
+            a.text-link(href="/posts") Khám phá tin tức ↗
+          if activities.length
+            .activity-list
+              each activity in activities
+                article.activity-item
+                  .activity-type(class=`activity-type-${activity.type || 'post'}`, aria-hidden="true")
+                    if activity.type === 'review'
+                      | ★
+                    else
+                      | ◈
+                  .activity-copy
+                    span.activity-label= activity.type === 'review' ? 'ĐÁNH GIÁ GAME' : 'BÀI VIẾT'
+                    h3
+                      a(href=activity.url || '/posts')= activity.title
+                    if activity.excerpt
+                      p= activity.excerpt
+                    .activity-meta
+                      if activity.date
+                        span= activity.date
+                      if activity.category
+                        span.category-chip= activity.category
+                  if activity.rating
+                    span.activity-rating
+                      | ★
+                      = activity.rating
+          else
+            .profile-empty
+              span.profile-empty-icon(aria-hidden="true") ◈
+              p Chưa có hoạt động nào để hiển thị.
+
+        aside.profile-aside
+          section.profile-panel.about-panel(aria-labelledby="about-title")
+            .profile-panel-heading
+              div
+                span.section-label THÀNH VIÊN
+                h2#about-title Giới thiệu
+            if user.about
+              p.about-copy= user.about
+            else
+              p.about-copy Chưa có phần giới thiệu.
+            if user.favoriteGenres && user.favoriteGenres.length
+              h3.aside-subtitle Thể loại yêu thích
+              .genre-list
+                each genre in user.favoriteGenres
+                  span.genre-chip= genre
+
+          section.profile-panel favorites-panel(aria-labelledby="favorites-title")
+            .profile-panel-heading
+              div
+                span.section-label ĐANG QUAN TÂM
+                h2#favorites-title Game yêu thích
+            if favoriteGames.length
+              .favorite-list
+                each game in favoriteGames
+                  a.favorite-game(href=game.url || '/games')
+                    span.favorite-game-icon(aria-hidden="true")= game.icon || '✦'
+                    span.favorite-game-copy
+                      strong= game.title
+                      small= game.genre || 'Game'
+                    span.favorite-game-arrow(aria-hidden="true") →
+            else
+              p.about-copy Chưa có game yêu thích.

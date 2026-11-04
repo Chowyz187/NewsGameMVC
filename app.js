@@ -1,9 +1,17 @@
 const express = require('express');
-const { getFeaturedGames } = require('./src/services/game-image-service');
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const demoProfile = require('./data/users.json').profile;
+const demoGames = require('./data/games.json').games;
+const demoCategories = require('./data/categories.json').categories.map((category) => {
+    const categoryGames = demoGames.filter((game) => game.genre === category.name);
+    return {
+        ...category,
+        games: categoryGames,
+        gameCount: categoryGames.length
+    };
+});
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -18,16 +26,6 @@ app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(express.static('public'));
 
-// External game image API
-app.get('/api/games/featured', async (req, res) => {
-    try {
-        const games = await getFeaturedGames();
-        res.set('Cache-Control', 'public, max-age=900').json({ games });
-    } catch (error) {
-        console.error('Không thể tải dữ liệu game từ FreeToGame:', error);
-        res.status(502).json({ error: 'Không thể tải hình ảnh game lúc này.' });
-    }
-});
 
 // Home page
 app.get('/', (req, res) => {
@@ -41,6 +39,47 @@ app.get('/login', (req, res) => {
 
 app.get('/register', (req, res) => {
     res.render('pages/auth/register');
+});
+
+// Demo profile pages (read-only fixture data)
+app.get('/users/profile', (req, res) => {
+    res.render('pages/users/profile', { profile: demoProfile });
+});
+
+app.get('/users/edit-profile', (req, res) => {
+    res.render('pages/users/edit-profile', { profile: demoProfile });
+});
+
+// Demo game pages (read-only fixture data)
+app.get('/games', (req, res) => {
+    res.render('pages/games/index', { games: demoGames });
+});
+
+app.get('/games/new', (req, res) => {
+    res.render('pages/games/form', { isEdit: false, game: {} });
+});
+
+app.get('/games/:slug/edit', (req, res) => {
+    const game = demoGames.find((item) => item.slug === req.params.slug);
+    if (!game) {
+        return res.status(404).render('pages/errors/404');
+    }
+
+    res.render('pages/games/form', { isEdit: true, game });
+});
+
+app.get('/games/:slug', (req, res) => {
+    const game = demoGames.find((item) => item.slug === req.params.slug);
+    if (!game) {
+        return res.status(404).render('pages/errors/404');
+    }
+
+    res.render('pages/games/detail', { game });
+});
+
+// Demo categories page (read-only fixture data)
+app.get('/categories', (req, res) => {
+    res.render('pages/categories/index', { categories: demoCategories });
 });
 
 // Error pages

@@ -1,0 +1,70 @@
+extends ../../layouts/main
+
+block title
+  | Thể loại game | NewsGameMVC
+
+block pageStyles
+  link(rel="stylesheet", href="/css/categories.css")
+
+block content
+  main.categories-page
+    .container
+      nav.categories-breadcrumb(aria-label="Đường dẫn")
+        a(href="/") Trang chủ
+        span(aria-hidden="true") /
+        span Thể loại
+
+      section.categories-hero(aria-labelledby="categories-title")
+        .categories-hero-copy
+          span.section-label KHÁM PHÁ THEO SỞ THÍCH
+          h1#categories-title Tìm game theo #[span thể loại.]
+          p Từ những cuộc phiêu lưu rộng lớn đến các trận đấu chiến thuật — chọn điều bạn muốn chơi hôm nay.
+          a.btn.btn-primary(href="/games") Khám phá thư viện game →
+        .categories-hero-art(aria-hidden="true")
+          span.hero-category-symbol ◈
+          span.hero-category-orbit.hero-category-orbit-one
+          span.hero-category-orbit.hero-category-orbit-two
+          span.hero-category-spark ✦
+
+      section.categories-section(aria-labelledby="category-list-title")
+        .categories-section-heading
+          div
+            span.section-label CHỌN HÀNH TRÌNH CỦA BẠN
+            h2#category-list-title Các thể loại
+          span.categories-count= `${categories.length} thể loại`
+
+        if categories.length
+          .category-grid
+            each category in categories
+              article.category-card
+                .category-art(class=category.artClass)
+                  span.category-art-label= category.englishName
+                  span.category-art-icon(aria-hidden="true")= category.icon
+                  span.category-art-ring(aria-hidden="true")
+                  span.category-art-count= `${category.gameCount} game`
+                .category-card-body
+                  h3= category.name
+                  p= category.description
+                  if category.games.length
+                    .category-game-list
+                      each game in category.games
+                        a.category-game-link(href=`/games/${game.slug}`)
+                          span.category-game-dot(aria-hidden="true")= game.icon
+                          span= game.title
+                          if game.rating !== '—'
+                            strong
+                              span(aria-hidden="true") ★
+                              = game.rating
+                  else
+                    p.category-empty Chưa có game trong thể loại này.
+                  a.category-explore(href="/games") Khám phá game
+                    span(aria-hidden="true") →
+        else
+          .categories-empty Chưa có thể loại nào để hiển thị.
+
+      section.categories-note
+        span.categories-note-icon(aria-hidden="true") ✧
+        div
+          h2 Chưa biết bắt đầu từ đâu?
+          p Duyệt qua toàn bộ thư viện để tìm một tựa game mới hợp với tâm trạng của bạn.
+        a.text-link(href="/games") Xem tất cả game →

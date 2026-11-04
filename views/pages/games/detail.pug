@@ -1,0 +1,82 @@
+extends ../../layouts/main
+
+block title
+  | #{game.title} | NewsGameMVC
+
+block pageStyles
+  link(rel="stylesheet", href="/css/games.css")
+
+block content
+  main.games-page.game-detail-page
+    .container
+      nav.games-breadcrumb(aria-label="Đường dẫn")
+        a(href="/") Trang chủ
+        span(aria-hidden="true") /
+        a(href="/games") Khám phá game
+        span(aria-hidden="true") /
+        span= game.title
+
+      section.game-detail-hero
+        .detail-art(class=game.coverClass, role="img", aria-label=`Minh họa ${game.title}`)
+          span.detail-art-symbol(aria-hidden="true")= game.icon
+          span.detail-art-orbit(aria-hidden="true")
+          span.detail-status(class=game.status === 'Sắp ra mắt' ? 'is-upcoming' : null)= game.status
+        .detail-intro
+          span.section-label= game.genre.toUpperCase()
+          h1= game.title
+          p.detail-summary= game.summary
+          .detail-rating
+            if game.rating !== '—'
+              span.detail-stars(aria-label=`Điểm ${game.rating} trên 10`) ★
+              strong= game.rating
+              span= `${game.reviewCount} đánh giá cộng đồng`
+            else
+              span.detail-not-rated Chưa có điểm đánh giá
+          .detail-tags
+            each tag in game.tags
+              span.genre-chip= tag
+          .detail-actions
+            a.btn.btn-primary(href="#community-review") Đọc nhận xét
+            a.btn.btn-outline(href="/games") ← Thư viện game
+            a.detail-edit-link(href=`/games/${game.slug}/edit`) Chỉnh sửa thông tin
+
+      .detail-layout
+        article.detail-main
+          section.detail-panel(aria-labelledby="about-game-title")
+            .detail-panel-heading
+              span.section-label TỔNG QUAN
+              h2#about-game-title Về trò chơi
+            p.detail-description= game.description
+          section.detail-panel#community-review(aria-labelledby="review-title")
+            .detail-panel-heading
+              span.section-label CỘNG ĐỒNG NEWSGAME
+              h2#review-title Nhận xét nổi bật
+            .featured-review
+              span.review-mark(aria-hidden="true") “
+              p= game.review
+              span.review-byline GÓC NHÌN BIÊN TẬP
+        aside.detail-sidebar
+          section.detail-panel(aria-labelledby="game-info-title")
+            .detail-panel-heading
+              span.section-label THÔNG TIN
+              h2#game-info-title Chi tiết game
+            dl.game-facts
+              div
+                dt Thể loại
+                dd= game.genre
+              div
+                dt Nền tảng
+                dd= game.platform
+              div
+                dt Ngày phát hành
+                dd= game.releaseDate
+              div
+                dt Nhà phát triển
+                dd= game.developer
+              div
+                dt Nhà phát hành
+                dd= game.publisher
+              div
+                dt Chế độ chơi
+                dd= game.mode
+          a.detail-back-link(href="/games") ← Quay lại danh sách game

@@ -1,0 +1,75 @@
+extends ../../layouts/main
+
+block title
+  | Khám phá game | NewsGameMVC
+
+block pageStyles
+  link(rel="stylesheet", href="/css/games.css")
+
+block content
+  main.games-page
+    .container
+      nav.games-breadcrumb(aria-label="Đường dẫn")
+        a(href="/") Trang chủ
+        span(aria-hidden="true") /
+        span Khám phá game
+
+      section.games-intro(aria-labelledby="games-title")
+        .games-intro-copy
+          span.section-label THƯ VIỆN NEWSGAME
+          h1#games-title Tìm thế giới #[span.game-accent game] tiếp theo của bạn.
+          p Khám phá những tựa game đáng chú ý, đọc đánh giá và tìm trò chơi phù hợp với bạn.
+        .games-intro-mark(aria-hidden="true")
+          span ✦
+          span.games-mark-orbit
+
+      section.games-toolbar(aria-label="Tìm và lọc game")
+        label.games-search
+          span(aria-hidden="true") ⌕
+          input(type="search", placeholder="Tìm tên game...", aria-label="Tìm tên game")
+        .games-filters
+          span.filter-caption Thể loại
+          span.filter-chip.is-active Tất cả
+          span.filter-chip Nhập vai
+          span.filter-chip Hành động
+          span.filter-chip Phiêu lưu
+          span.filter-chip Mô phỏng
+
+      .games-results-heading
+        div
+          span.section-label ĐƯỢC CỘNG ĐỒNG QUAN TÂM
+          h2 Tất cả game
+        .games-results-actions
+          span.games-count= `${games.length} tựa game`
+          a.btn.btn-outline.games-add-link(href="/games/new") + Thêm game
+
+      if games.length
+        .games-catalog
+          each game in games
+            article.catalog-card
+              a.catalog-art(class=game.coverClass, href=`/games/${game.slug}`, aria-label=`Xem ${game.title}`)
+                span.catalog-art-symbol(aria-hidden="true")= game.icon
+                span.catalog-art-glow(aria-hidden="true")
+                span.catalog-platform= game.platform
+                span.catalog-status(class=game.status === 'Sắp ra mắt' ? 'is-upcoming' : null)= game.status
+              .catalog-card-body
+                .catalog-card-meta
+                  span.catalog-genre= game.genre
+                  if game.rating !== '—'
+                    span.catalog-rating
+                      span(aria-hidden="true") ★
+                      = game.rating
+                h3: a(href=`/games/${game.slug}`)= game.title
+                p.catalog-summary= game.summary
+                .catalog-card-footer
+                  span= game.releaseDate
+                  a.catalog-link(href=`/games/${game.slug}`) Xem chi tiết →
+      else
+        .games-empty Chưa có game nào để hiển thị.
+
+      section.games-callout
+        .games-callout-copy
+          span.section-label GÓC GAME THỦ
+          h2 Mỗi cuộc phiêu lưu đều bắt đầu từ một lựa chọn.
+          p Đọc đánh giá, khám phá thể loại mới và tìm người đồng hành cho hành trình tiếp theo.
+        a.btn.btn-primary(href="/posts") Đọc tin game

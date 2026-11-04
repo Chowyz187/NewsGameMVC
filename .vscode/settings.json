@@ -1,5 +1,13 @@
 {
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1000,
-  "workbench.externalBrowser": "chrome"
+  "workbench.externalBrowser": "chrome",
+  "search.exclude": {
+    "**/.env": true,
+    "**/.env.*": true
+  },
+  "files.exclude": {
+    "**/.env": true,
+    "**/.env.*": true
+  }
 }

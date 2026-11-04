@@ -1,0 +1,52 @@
+{
+  "categories": [
+    {
+      "slug": "hanh-dong",
+      "name": "Hành động",
+      "englishName": "ACTION",
+      "icon": "⌘",
+      "artClass": "category-art--action",
+      "description": "Thử thách phản xạ, kỹ năng và bản lĩnh qua những trận chiến giàu nhịp độ."
+    },
+    {
+      "slug": "phieu-luu",
+      "name": "Phiêu lưu",
+      "englishName": "ADVENTURE",
+      "icon": "✦",
+      "artClass": "category-art--adventure",
+      "description": "Khám phá những vùng đất mới, giải mã bí ẩn và tự viết nên hành trình của bạn."
+    },
+    {
+      "slug": "nhap-vai",
+      "name": "Nhập vai",
+      "englishName": "ROLE-PLAYING",
+      "icon": "◈",
+      "artClass": "category-art--rpg",
+      "description": "Hóa thân vào nhân vật, phát triển kỹ năng và đưa ra lựa chọn định hình câu chuyện."
+    },
+    {
+      "slug": "chien-thuat",
+      "name": "Chiến thuật",
+      "englishName": "STRATEGY",
+      "icon": "◎",
+      "artClass": "category-art--strategy",
+      "description": "Lập kế hoạch, cân nhắc từng nước đi và dẫn dắt đội quân đến chiến thắng."
+    },
+    {
+      "slug": "mo-phong",
+      "name": "Mô phỏng",
+      "englishName": "SIMULATION",
+      "icon": "☾",
+      "artClass": "category-art--simulation",
+      "description": "Xây dựng, quản lý và trải nghiệm những thế giới theo cách của riêng bạn."
+    },
+    {
+      "slug": "dua-xe",
+      "name": "Đua xe",
+      "englishName": "RACING",
+      "icon": "⌁",
+      "artClass": "category-art--racing",
+      "description": "Tăng tốc, làm chủ đường đua và chinh phục những cung đường đầy thử thách."
+    }
+  ]
+}
